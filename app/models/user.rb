@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
   has_many :urls
   include BCrypt
 
+  validates :name, presence: true
   # validates :password, presence: true, length: {mininum: 6}
 
   def password
