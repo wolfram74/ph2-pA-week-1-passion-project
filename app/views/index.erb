@@ -1,0 +1,9 @@
+<div class = "spacing" >
+<% if !@user.nil? %>
+  <a href=<%="/sheets/%d" % @user.id %>> View your sheets.</a>
+  <br>
+  <a href=<%="/equations/%d" % @user.id %>> View your equations.</a>
+<% else %>
+LOGIN
+<% end %>
+</div>
