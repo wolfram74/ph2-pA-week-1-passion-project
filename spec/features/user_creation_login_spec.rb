@@ -16,7 +16,7 @@ describe "user registrations" do
       user_name = Faker::Name.first_name
       password = "doodle"
       user = {name: user_name, password: password, password_confirmation: password}
-      p user
+      # p user
       expect {
         post "/users/new", {user: user}
         }.to change{User.count}
@@ -40,6 +40,24 @@ describe "user registrations" do
       user = User.new({ password: password})
       user.save
       expect(user.errors.messages.keys.include?(:name)).to eq(true)
+    end
+  end
+end
+
+describe "equation creation" do
+  describe "creation behaves well" do
+    it "adds a new equation after post" do
+      faff = "foofoofoo"
+
+      equation = {latex_string: faff,
+        label: faff,
+        description: faff,
+        private: ""}
+      # p user
+      temp_id = User.last.id
+      expect {
+        post "/equations/new", {eqn: equation},{"rack.session" => {:current_user_id => temp_id }}
+        }.to change{Equation.count}
     end
   end
 

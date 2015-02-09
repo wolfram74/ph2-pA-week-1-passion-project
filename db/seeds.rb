@@ -8,6 +8,7 @@ Listing.destroy_all
 
 
 user = {name: "pythag", password: "beanhater"}
+user2 = {name: "gauss", password: "curler"}
 eqn1 = {latex_string:"3^2+4^2 = 5^2", label:"smallest triple", description: "The smallest triple satisfying the pythagorean theorem." ,  private: "" }
 eqn2 = {latex_string:"18^2+24^2 = 30^2", label:"large triple", description: "The large triple satisfying the pythagorean theorem less than 1000." ,  private: ""}
 eqn3 = {latex_string:"a^w*sh_it=f(c,k)Y_e^a", label:"general solution", description: "Complete solution to all problems." ,  private: "true" }
@@ -26,3 +27,4 @@ pyth.sheets[0].equations << pyth.equations[0]
 pyth.sheets[0].equations << pyth.equations[1]
 pyth.sheets[1].equations << pyth.equations[1]
 pyth.sheets[1].equations << pyth.equations[2]
+User.create(user2)

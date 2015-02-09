@@ -1,1 +1,11 @@
-filler
+
+<div class = "spacing">
+  <a href= "equations/new"> Make a new equation? </a>
+  <ol>
+    <% @users_equations.each do |eqn| %>
+      <li>
+        <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+      </li>
+    <% end %>
+  </ol>
+</div>
