@@ -7,9 +7,7 @@ end
 post "/users/new" do
   info = params[:user]
   if info["password"] == info["password_confirmation"]
-    p info
     info.delete("password_confirmation")
-    p info
     @user = User.new(info)
   else
     redirect ("/users/new")
