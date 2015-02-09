@@ -1,1 +1,33 @@
-filler
+<div class="spacing">
+Select equations from below and name your sheet.
+  <form action="/sheets/new" method="post">
+    <input type="text" name="sheet[name]" placeholder="Sheet name">
+    <br>
+    <textarea name="sheet[description]">Describe your sheet</textarea>
+    <br>
+    <left><input type="submit" value="submit new sheet!"></left>
+    <h3> You're equations</h3><br>
+    <ol>
+    <% @users_equations.each do |eqn| %>
+      <li>
+        <input type="checkbox"
+        name= <%="sheet[%d]" % eqn.id %>
+        value="add">
+        <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+      </li>
+    <% end %>
+    </ol>
+    <h3> Publicly available equations</h3><br>
+    <ol>
+    <% @public_equations.each do |eqn| %>
+      <li>
+        <input type="checkbox"
+        name= <%="sheet[%d]" % eqn.id %>
+        value="add">
+        <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+      </li>
+    <% end %>
+    </ol>
+
+  </form>
+</div>

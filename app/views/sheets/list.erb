@@ -1,1 +1,14 @@
-filler
+
+<div class = "spacing">
+  <a href= "/sheets/new"> Make a new sheet? </a>
+  <ol>
+    <% @user_sheets.each do |sheet| %>
+      <li>
+        <a href = <%= "/sheets/%d" % sheet.id %> >
+        <%="%s" % sheet.name %>
+        </a><br>
+        <%= "%s" % sheet.description %>
+      </li>
+    <% end %>
+  </ol>
+</div>

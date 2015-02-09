@@ -1,1 +1,22 @@
-filler
+<div class = "sheet_view">
+  <h3>Name</h3><br>
+  <%= @sheet.name %><br>
+  <h3>Description</h3><br>
+  <%= @sheet.description %><br>
+  <a href = <%= "/sheets/%d/edit" % @sheet.id %>>
+    Edit?
+  </a><br>
+  <a href = <%= "/sheets/%d/format" % @sheet.id %>>
+    Formatted output
+  </a><br>
+
+  <ol>
+    <% @sheet.equations.each do |eqn| %>
+      <li>
+        <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+      </li>
+    <% end %>
+
+  </ol>
+
+</div>
