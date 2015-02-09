@@ -1,0 +1,21 @@
+div.remove_equations_block {
+  background-color: #ff6060;
+  float: left;
+  width: 47%;
+  border: solid 2px;
+  margin: 4px;
+  border-radius: 5px;
+}
+
+div.add_equations_block {
+  background-color: #60aa00;
+  float: right;
+  width: 47%;
+  border: solid 2px;
+  margin: 4px;
+  border-radius: 5px;
+}
+input.edit_list_submit {
+  /*float: top;*/
+
+}
