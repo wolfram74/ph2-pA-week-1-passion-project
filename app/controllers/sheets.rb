@@ -18,10 +18,14 @@ post "/sheets/new" do
   @user = session_current_user
   sheet_info = {name: form_data[:name],
     description: form_data[:description]}
-  @user.sheets.create(sheet_info)
-
-  redirect("/sheets/new")
-
+  new_sheet = @user.sheets.create(sheet_info)
+  form_data.delete(:name)
+  form_data.delete(:description)
+  form_data.keys.each do |k|
+    equation = Equation.find(k) if Equation.where(id: k).any?
+    new_sheet.equations << equation if form_data[k] == "add"
+  end
+  redirect("/sheets/list")
 end
 
 get "/sheets/:id" do |list_id|
