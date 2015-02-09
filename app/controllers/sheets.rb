@@ -34,16 +34,33 @@ get "/sheets/:id" do |list_id|
   erb :"sheets/view"
 end
 
-get "/sheets/:id/edit" do
+get "/sheets/:id/edit" do |id|
   @user = session_current_user
   @all_equations = Equation.all
+  @status_quo = Sheet.find(id)
+  @all_equations = @all_equations - @status_quo.equations
   @users_equations = @user.equations
+  @users_equations -= @status_quo.equations
   @private_equations = Equation.where(private: "true")
   @public_equations = @all_equations-(@users_equations+@private_equations)
-  p "things are happening"*10
-  p @users_equations
-  p @public_equations
   erb :"sheets/edit"
+end
+
+put "/sheets/:id/edit" do |id|
+  p "editing is happening!!!"*10
+  form_data = params[:sheet]
+  p form_data
+  @user = session_current_user
+  @old_sheet = Sheet.find(id)
+  form_data.keys.each do |k|
+    equation = Equation.find(k) if Equation.where(id: k).any?
+    if form_data[k] == "add"
+      @old_sheet.equations << equation
+    elsif form_data[k] =="delete"
+      Listing.find_by(equation_id: k, sheet_id: id).destroy
+    end
+  end
+  redirect("/sheets/list")
 end
 
 get "/sheets/:id/format" do

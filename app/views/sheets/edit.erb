@@ -1,1 +1,47 @@
-filler
+<div class="spacing">
+  <form
+  action= <%="/sheets/%d/edit" % @status_quo.id %>
+  method = "post">
+    <input type = "hidden" name="_method" value="put">
+    <left><input type="submit" value="update your sheet!"></left>
+    <div class = "remove_equations_block">
+      <h3> Check boxes to remove old equations</h3><br>
+      <ol>
+        <% @status_quo.equations.each do |eqn| %>
+          <li>
+            <input type="checkbox"
+            name= <%="sheet[%d]" % eqn.id %>
+            value="delete">
+            <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+          </li>
+        <% end %>
+      </ol>
+    </div>
+
+    <div class="add_equations_block">
+      <h3> Check boxes to add new equations.</h3><br>
+      <h3> Your equations</h3><br>
+      <ol>
+      <% @users_equations.each do |eqn| %>
+        <li>
+          <input type="checkbox"
+          name= <%="sheet[%d]" % eqn.id %>
+          value="add">
+          <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+        </li>
+      <% end %>
+      </ol>
+      <h3> Publicly available equations</h3><br>
+      <ol>
+      <% @public_equations.each do |eqn| %>
+        <li>
+          <input type="checkbox"
+          name= <%="sheet[%d]" % eqn.id %>
+          value="add">
+          <%="%s, %s <br> %s" % [eqn.latex_string, eqn.label, eqn.description] %>
+        </li>
+      <% end %>
+      </ol>
+    </div>
+  </form>
+</div>
