@@ -3,7 +3,7 @@
   <div class="errors">
     <%= @user.errors.full_messages if @user.errors.any? %>
   </div>
-  <form action="/session/new" method="post">
+  <form action="/equations/new" method="post">
     <input type="text" name="eqn[latex_string]" placeholder="Latex_string">
     <input type="text" name="eqn[label]" placeholder="Equation label">
     <br>
